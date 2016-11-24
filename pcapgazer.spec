@@ -38,13 +38,11 @@ PCAP Gazer
 
 %defattr(-, root, root)
 %attr(644, -, -) /etc/logrotate.d/pcapgazer
-%attr(644, -, -) /usr/lib/systemd/system/pcapgazer.service
 %attr(755, -, -) /opt/pcapgazer/
 %attr(755, -, -) /var/log/pcapgazer/
 %attr(755, -, -) /opt/pcapgazer/pcapgazer.pl
 %attr(644, -, -) /opt/pcapgazer/Output/*
 %config(noreplace) %attr(644, -, -) /opt/pcapgazer/config.ini
-
 
 %pre
 
