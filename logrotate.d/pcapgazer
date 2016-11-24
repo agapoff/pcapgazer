@@ -1,0 +1,8 @@
+/var/log/pcapgazer/*log {
+    create 0644 root root
+    daily
+    rotate 10
+    missingok
+    compress
+    sharedscripts
+}
