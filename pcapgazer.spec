@@ -51,6 +51,7 @@ PCAP Gazer
 %changelog
 * Fri Nov 25 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-2
 - Change owner for /var/log/pcapgazer
+- Non-strict inequality for seqnums
 
 * Thu Nov 24 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-1
 - Initial build

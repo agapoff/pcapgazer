@@ -74,7 +74,7 @@ sub process_packet {
 	if ($ip->{proto} == IP_PROTO_TCP) {
 		my $tcp = NetPacket::TCP->decode($ip->{data});
 		my $key = $ip->{src_ip}.':'.$tcp->{src_port}.' '.$ip->{dest_ip}.':'.$tcp->{dest_port};
-		if (defined $seqnum{$key} && $tcp->{seqnum} < $seqnum{$key} && $tcp->{seqnum} > $seqnum{$key}/2) {
+		if (defined $seqnum{$key} && $tcp->{seqnum} <= $seqnum{$key} && $tcp->{seqnum} > $seqnum{$key}/2) {
 
 			my %event = (
 				timestamp => $header->{tv_sec},
