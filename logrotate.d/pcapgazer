@@ -1,5 +1,5 @@
 /var/log/pcapgazer/*log {
-    create 0644 root root
+    create 0644 tcpdump tcpdump
     daily
     rotate 10
     missingok

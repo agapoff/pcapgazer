@@ -1,7 +1,7 @@
 # if you make changes, the it is advised to increment this number, and provide 
 # a descriptive suffix to identify who owns or what the change represents
 # e.g. release_version 2.MSW
-%define release_version 1
+%define release_version 2
 
 # if you wish to compile an rpm without ibverbs support, compile like this...
 # rpmbuild -ta glusterfs-1.3.8pre1.tar.gz --without ibverbs
@@ -39,7 +39,7 @@ PCAP Gazer
 %defattr(-, root, root)
 %attr(644, -, -) /etc/logrotate.d/pcapgazer
 %attr(755, -, -) /opt/pcapgazer/
-%attr(777, -, -) /var/log/pcapgazer/
+%attr(777, tcpdump, tcpdump) /var/log/pcapgazer/
 %attr(755, -, -) /opt/pcapgazer/pcapgazer.pl
 %attr(644, -, -) /opt/pcapgazer/Output/*
 %config(noreplace) %attr(644, -, -) /opt/pcapgazer/config.ini
@@ -49,5 +49,8 @@ PCAP Gazer
 %post
 
 %changelog
+* Fri Nov 25 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-2
+- Change owner for /var/log/pcapgazer
+
 * Thu Nov 24 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-1
 - Initial build
