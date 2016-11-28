@@ -25,6 +25,10 @@ unless ($pcap_file) {
 write_log("Opening file $pcap_file");
 
 my $cfg = &read_config;
+if (ref($cfg->{output}) ne 'ARRAY') {
+	$cfg->{output} = [ $cfg->{output} ];
+}
+
 our %seqnum;
 my $err;
 
