@@ -39,7 +39,7 @@ PCAP Gazer
 %defattr(-, root, root)
 %attr(644, -, -) /etc/logrotate.d/pcapgazer
 %attr(755, -, -) /opt/pcapgazer/
-%attr(777, tcpdump, tcpdump) /var/log/pcapgazer/
+%attr(755, tcpdump, tcpdump) /var/log/pcapgazer/
 %attr(755, -, -) /opt/pcapgazer/pcapgazer.pl
 %attr(644, -, -) /opt/pcapgazer/Output/*
 %config(noreplace) %attr(644, -, -) /opt/pcapgazer/config.ini
