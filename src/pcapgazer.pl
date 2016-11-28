@@ -30,17 +30,18 @@ if (ref($cfg->{output}) ne 'ARRAY') {
 }
 
 our %seqnum;
+our $count = 0;
 my $err;
 
 my $pcap = Net::Pcap::open_offline($pcap_file, \$err) or die "Can't read '$pcap_file': $err\n";
 
 foreach my $output ( @{$cfg->{output}} ) {
-	print "Initializing destination $output...\n";
+	print "Initializing destination $output...\n" if ($cfg->{debug});
 	write_log("Initializing destination $output...");
 
 	my $module = "Output/$output.pm";
 	if (eval { require $module; 1; }) {
-		print "Module $output.pm loaded ok\n";
+		print "Module $output.pm loaded ok\n" if ($cfg->{debug});
 		write_log ("Module $output.pm loaded ok");
 		unless ("Output::${output}::init"->($cfg->{$output},\&write_log)) {
 			$cfg->{$output}->{disabled} = 1;
@@ -57,6 +58,10 @@ foreach my $output ( @{$cfg->{output}} ) {
 
 Net::Pcap::loop($pcap, 0, \&process_packet, '');
 Net::Pcap::close($pcap);
+
+print "Found and sent $count events\n" if ($cfg->{debug});
+write_log("Found and sent $count events");
+exit;
 
 sub process_packet {
 	my ($user_data, $header, $packet) = @_;
@@ -94,6 +99,7 @@ sub process_packet {
 				next if ($cfg->{$output}->{disabled});
 				my $resp = "Output::${output}::push"->(\%event, $cfg->{$output},\&write_log);
 			}
+			$count++;
 
 		} else {
 			$seqnum{$key} = $tcp->{seqnum};
