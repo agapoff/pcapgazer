@@ -100,10 +100,8 @@ sub process_packet {
 			}
 			$count++;
 
-		} elsif ($tcp->{flags} == 16 || ! $tcp->{data}) {
-			# Sequence number not incremented on pure ACKs or on any empty segment
-			return;
-		} else {
+		} elsif ($tcp->{flags} & 8) {
+			# Sequence number incremented only if PSH bit is set
 			$seqnum{$key} = $tcp->{seqnum};
 		}
 	}
