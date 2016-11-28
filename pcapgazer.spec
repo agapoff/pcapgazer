@@ -1,7 +1,7 @@
 # if you make changes, the it is advised to increment this number, and provide 
 # a descriptive suffix to identify who owns or what the change represents
 # e.g. release_version 2.MSW
-%define release_version 3
+%define release_version 4
 
 # if you wish to compile an rpm without ibverbs support, compile like this...
 # rpmbuild -ta glusterfs-1.3.8pre1.tar.gz --without ibverbs
@@ -49,6 +49,10 @@ PCAP Gazer
 %post
 
 %changelog
+* Mon Nov 28 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-4
+- Counter
+- Sequence number not incremented on pure ACKs or on any empty segment
+
 * Mon Nov 28 2016 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-3
 - Fix bug appearing when output is not an array
 - Non-strict inequality for seqnums 

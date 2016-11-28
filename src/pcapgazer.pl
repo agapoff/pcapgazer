@@ -84,7 +84,6 @@ sub process_packet {
 		my $tcp = NetPacket::TCP->decode($ip->{data});
 		my $key = $ip->{src_ip}.':'.$tcp->{src_port}.' '.$ip->{dest_ip}.':'.$tcp->{dest_port};
 		if (defined $seqnum{$key} && $tcp->{seqnum} <= $seqnum{$key} && $tcp->{seqnum} > $seqnum{$key}/2) {
-
 			my %event = (
 				timestamp => $header->{tv_sec},
 				src_ip   => $ip->{src_ip},
@@ -101,11 +100,12 @@ sub process_packet {
 			}
 			$count++;
 
+		} elsif ($tcp->{flags} == 16 || ! $tcp->{data}) {
+			# Sequence number not incremented on pure ACKs or on any empty segment
+			return;
 		} else {
 			$seqnum{$key} = $tcp->{seqnum};
 		}
-	} else {
-
 	}
 }
 
