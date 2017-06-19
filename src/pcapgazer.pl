@@ -100,8 +100,8 @@ sub process_packet {
 			}
 			$count++;
 
-		} elsif ($tcp->{flags} & 8) {
-			# Sequence number incremented only if PSH bit is set
+		} elsif ($tcp->{flags} & 8 || $tcp->{data}) {
+			# Sequence number incremented only on data nessages (i.e. when PSH flag is set)
 			$seqnum{$key} = $tcp->{seqnum};
 		}
 	}
