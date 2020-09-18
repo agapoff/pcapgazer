@@ -4,7 +4,7 @@
 
 Summary: PCAPGazer
 Name: pcapgazer
-Version: 2.0
+Version: 3.0
 Release: %release_version
 License: GPL2
 Group: System Environment/Base
@@ -38,6 +38,9 @@ PCAP Gazer
 %post
 
 %changelog
+
+* Fri Sep 18 2020 Vitaly Agapov <agapov.vitaly@gmail.com> - 3.0-1
+- Update for ES7
 
 * Mon Jun 19 2017 Vitaly Agapov <agapov.vitaly@gmail.com> - 1.0-5
 - Seq num is incremented even is PSH is not set
